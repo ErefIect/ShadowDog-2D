@@ -1,0 +1,2 @@
+! Uncaught TypeError: c.getContext is not a function
+- 原因: 用的是div标签不是canvas标签
