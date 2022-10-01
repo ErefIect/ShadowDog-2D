@@ -1,6 +1,3 @@
-/*
- * @Date: 2022-08-17 10:07:10
- */
 
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
@@ -12,7 +9,7 @@ playerImage.src = 'img/shadow_dog.png';
 const spriteWidth = 575;
 const spriteHeight = 523;
 
-// 厨房幽灵#TODO 监听事件
+// 监听事件
 let playerState = 'run';
 const dropDown = document.getElementById('animations');
 dropDown.addEventListener('change', function (e) {
@@ -21,7 +18,7 @@ dropDown.addEventListener('change', function (e) {
 
 let gameFrame = 0;
 const staggerFrame = 5;
-// 厨房幽灵#TODO 创建对象数据
+// 创建对象数据
 const spriteAnimations = [];
 const animationStates = [
   {
@@ -81,7 +78,6 @@ console.log(spriteAnimations);
 function animate() {
   // 清除指定区域
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  // 参数 (url, source_x, s_y, s_width, s_height, distination_x, d_y, d_w, d_h)
 
   let position = Math.floor(gameFrame / staggerFrame) % spriteAnimations[playerState].loc.length;
   let frameX = spriteWidth * position;
@@ -90,21 +86,37 @@ function animate() {
   ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, 0, 0, spriteWidth / 2, spriteHeight / 2);
   
   gameFrame++;
-  /* if (frameX < 9) {
-    if (gameFrame % staggerFrame == 0) frameX += 1;
-  } else {
-    frameX = 0;
-  }
-  */
-  
-  // if (gameFrame < 10) gameFrame++;
-  // else gameFrame = 0; 
-  
-  // console.log(gameFrame);
-  // 厨房幽灵 #TODO动画循环
+ 
+  // 动画循环
   requestAnimationFrame(animate);
 
 
 }
 animate();
 
+
+/* 
+sx 可选
+// 需要绘制到目标上下文中的，image 的矩形（裁剪）选择框的左上角 X 轴坐标。可以使用 3 参数或 5 参数语法来省略这个参数。
+
+sy 可选
+// 需要绘制到目标上下文中的，image 的矩形（裁剪）选择框的左上角 Y 轴坐标。可以使用 3 参数或 5 参数语法来省略这个参数。
+
+sWidth 可选
+// 需要绘制到目标上下文中的，image 的矩形（裁剪）选择框的宽度。如果不说明，整个矩形（裁剪）从坐标的 sx 和 sy 开始，到 image 的右下角结束。可以使用 3 参数或 5 参数语法来省略这个参数。使用负值将翻转这个图像。
+
+sHeight 可选
+// 需要绘制到目标上下文中的，image的矩形（裁剪）选择框的高度。使用负值将翻转这个图像。
+
+dx
+// image 的左上角在目标画布上 X 轴坐标。
+
+dy
+// image 的左上角在目标画布上 Y 轴坐标。
+
+dWidth
+// image 在目标画布上绘制的宽度。允许对绘制的 image 进行缩放。如果不说明，在绘制时 image 宽度不会缩放。注意，这个参数不包含在 3 参数语法中。
+
+dHeight
+// image 在目标画布上绘制的高度。允许对绘制的 image 进行缩放。如果不说明，在绘制时 image 高度不会缩放。注意，这个参数不包含在 3 参数语法中。
+*/

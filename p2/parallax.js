@@ -18,7 +18,7 @@ let backgroundLayer5 = new Image();
 backgroundLayer5.src = ('img/layer-5.png');
 
 
-
+// dom操作
 const slider = document.getElementById('slider');
 slider.value = gameSpeed;
 const showGameSpeed = document.getElementById('showGameSpeed');
@@ -74,7 +74,6 @@ function animate() {
 
     object.update();
     object.draw();
-    // object.draw(img[index]);
 
   })
 
