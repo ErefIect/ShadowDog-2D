@@ -4,10 +4,11 @@ const canvas = document.getElementById('canvas');
 console.log(canvas);
 const ctx = canvas.getContext('2d');
 
-CANVAS_HEIGHT = ctx.height = 500;
-CANVAS_WIDTH = ctx.width = 1000;
+CANVAS_HEIGHT = canvas.height = 600;
+CANVAS_WIDTH = canvas.width = 800;
 
 //// enemy对象数组
+const numberOfEnemies = 10;
 const enemiesArray = [];
 
 //// 加载enemy图片资源
@@ -28,8 +29,8 @@ class Enemy {
     this.spriteWidth = [293, 266] ;
     this.spriteHeight = [155, 188];
     //// 缩放
-    this.width = this.spriteWidth[1] / 5;     
-    this.height = this.spriteHeight[1] / 5;
+    this.width = this.spriteWidth[1] / 2.5;     
+    this.height = this.spriteHeight[1] / 2.5;
     
     //// 确保在canvas内部 随机位置生成 enemy
     this.x = Math.random() * (canvas.width - this.width);
@@ -47,8 +48,8 @@ class Enemy {
       this.x += ( 4 / this.flatFrame ) * (Math.random() * 3 - 1.5);
       this.y += ( 4 / this.flatFrame ) * (Math.random() * 3 - 1.5);
     }
-    this.x += this.speed;
-    this.y += this.speed;
+    // this.x += this.speed;
+    // this.y += this.speed;
 
     //// 将移动速度, flat动画播放速度改为默认速度的[1, 4]倍
     if (gameFrame % this.flatFrame === 0) {
@@ -72,9 +73,7 @@ function createEnemy(number) {
     enemiesArray.push(enemy);
   }
 }
-createEnemy(100)
-
-// console.log(enemiesArray);
+createEnemy(numberOfEnemies);
 
 ////  游戏主循环
 function animate() {
